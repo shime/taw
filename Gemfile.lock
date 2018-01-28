@@ -1,12 +1,17 @@
 PATH
   remote: .
   specs:
-    taw (0.1.0)
+    taw (1.0.0pre)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    coderay (1.1.2)
+    method_source (0.9.0)
     minitest (5.11.3)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     rake (10.5.0)
 
 PLATFORMS
@@ -15,6 +20,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   minitest (~> 5.0)
+  pry
   rake (~> 10.0)
   taw!
 

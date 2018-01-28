@@ -20,4 +20,8 @@ class TawTest < Minitest::Test
   def test_it_returns_mixed_stuff
     assert_equal "2 hours and 1 minute and 4 seconds", Taw.time_ago_in_words(Time.now - 60 * 60 * 2 - 64)
   end
+
+  def test_it_returns_days
+    assert_equal "2 days", Taw.time_ago_in_words(Time.now - 60 * 60 * 24 * 2)
+  end
 end

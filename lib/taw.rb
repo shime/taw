@@ -18,7 +18,7 @@ module Taw
 
     private
 
-    attr_accessor :hours, :minutes, :seconds, :distance
+    attr_accessor :hours, :minutes, :seconds, :distance, :days
 
     def calculate_distance
       while distance > 0
@@ -28,6 +28,8 @@ module Taw
           build_minutes
         elsif distance < DAY_IN_SECONDS
           build_hours
+        else
+          build_days
         end
       end
     end
@@ -44,8 +46,13 @@ module Taw
       self.hours, self.distance = distance.divmod(HOUR_IN_SECONDS)
     end
 
+    def build_days
+      self.days, self.distance = distance.divmod(DAY_IN_SECONDS)
+    end
+
     def output_distance
       [
+        ("#{days} #{pluralize(days, "day", "days")}" if days && days > 0),
         ("#{hours} #{pluralize(hours, "hour", "hours")}" if hours && hours > 0),
         ("#{minutes} #{pluralize(minutes, "minute", "minutes")}" if minutes && minutes > 0),
         ("#{seconds} #{pluralize(seconds, "second", "seconds")}" if seconds && seconds > 0)

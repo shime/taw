@@ -1,5 +1,7 @@
 # Taw
 
+[![Build Status](https://travis-ci.org/shime/taw.svg?branch=master)](https://travis-ci.org/shime/taw)
+
 **T**ime **A**go in **W**ords helper for non Rails projects.
 No dependencies. No assumptions about your codebase.
 

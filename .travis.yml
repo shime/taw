@@ -4,3 +4,4 @@ rvm:
   - 2.5.0
   - 2.4.3
   - 2.3.6
+install: bundle install --jobs=3 --retry=3

@@ -5,6 +5,7 @@ module Taw
   HOUR_IN_SECONDS = MINUTE_IN_SECONDS * 60
   DAY_IN_SECONDS = HOUR_IN_SECONDS * 24
   WEEK_IN_SECONDS = DAY_IN_SECONDS * 7
+  MONTH_IN_SECONDS = DAY_IN_SECONDS * 30
 
   def self.time_ago_in_words(time)
     Calculator.new.time_ago_in_words(time)
@@ -24,7 +25,8 @@ module Taw
       :minutes,
       :hours,
       :days,
-      :weeks
+      :weeks,
+      :months
 
     def calculate_distance
       while distance > 0
@@ -36,8 +38,10 @@ module Taw
           build_hours
         elsif distance < WEEK_IN_SECONDS
           build_days
-        else
+        elsif distance < MONTH_IN_SECONDS
           build_weeks
+        else 
+          build_months
         end
       end
     end
@@ -62,8 +66,13 @@ module Taw
       self.weeks, self.distance = distance.divmod(WEEK_IN_SECONDS)
     end
 
+    def build_months
+      self.months, self.distance = distance.divmod(MONTH_IN_SECONDS)
+    end
+
     def output_distance
       [
+        ("#{months} #{pluralize(months, "month", "months")}" if months && months > 0),
         ("#{weeks} #{pluralize(weeks, "week", "weeks")}" if weeks && weeks > 0),
         ("#{days} #{pluralize(days, "day", "days")}" if days && days > 0),
         ("#{hours} #{pluralize(hours, "hour", "hours")}" if hours && hours > 0),

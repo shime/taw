@@ -22,15 +22,11 @@ module Taw
 
     def calculate_distance
       while distance > 0
-        if distance < MINUTE_IN_SECONDS && distance > 0
+        if distance < MINUTE_IN_SECONDS
           build_seconds
-        end
-
-        if distance < HOUR_IN_SECONDS && distance > 0
+        elsif distance < HOUR_IN_SECONDS
           build_minutes
-        end
-
-        if distance < DAY_IN_SECONDS && distance > 0
+        elsif distance < DAY_IN_SECONDS
           build_hours
         end
       end

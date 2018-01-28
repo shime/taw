@@ -1,6 +1,7 @@
 # Taw
 
 **T**ime **A**go in **W**ords helper for non Rails projects.
+No dependencies. No assumptions about your codebase.
 
 ## Usage
 
@@ -8,10 +9,13 @@
 require "taw"
 
 Taw.time_ago_in_words(Time.now - 60 * 60 * 2) + " ago"
-# => "about 2 hours ago"
+# => "2 hours ago"
 
 Taw.time_ago_in_words(Time.now - 63) + " ago"
 # => "1 minute and 3 seconds ago"
+
+Taw.time_ago_in_words(Time.now - 60 * 60 * 2 - 63) + " ago"
+# => "2 hours and 1 minute and 3 seconds ago"
 ```
 
 ## Installation
@@ -40,10 +44,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-## License
-
-[MIT](/LICENSE)
-
 ## Code of Conduct
 
 Everyone interacting in the Taw project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/shime/taw/blob/master/CODE_OF_CONDUCT.md).
+
+## License
+
+[MIT](/LICENSE)

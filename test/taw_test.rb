@@ -32,4 +32,8 @@ class TawTest < Minitest::Test
   def test_it_returns_months
     assert_equal "2 months", Taw.time_ago_in_words(Time.now - 60 * 60 * 24 * 60)
   end
+
+  def test_it_returns_years
+    assert_equal "1 year", Taw.time_ago_in_words(Time.now - 60 * 60 * 24 * 30 * 12)
+  end
 end

@@ -80,17 +80,17 @@ module Taw
 
     def output_distance
       [
-        ("#{years} #{pluralize(years, "year", "years")}" if years && years > 0),
-        ("#{months} #{pluralize(months, "month", "months")}" if months && months > 0),
-        ("#{weeks} #{pluralize(weeks, "week", "weeks")}" if weeks && weeks > 0),
-        ("#{days} #{pluralize(days, "day", "days")}" if days && days > 0),
-        ("#{hours} #{pluralize(hours, "hour", "hours")}" if hours && hours > 0),
-        ("#{minutes} #{pluralize(minutes, "minute", "minutes")}" if minutes && minutes > 0),
-        ("#{seconds} #{pluralize(seconds, "second", "seconds")}" if seconds && seconds > 0)
+        ("#{years} #{pluralize(years, "year")}" if years && years > 0),
+        ("#{months} #{pluralize(months, "month")}" if months && months > 0),
+        ("#{weeks} #{pluralize(weeks, "week")}" if weeks && weeks > 0),
+        ("#{days} #{pluralize(days, "day")}" if days && days > 0),
+        ("#{hours} #{pluralize(hours, "hour")}" if hours && hours > 0),
+        ("#{minutes} #{pluralize(minutes, "minute")}" if minutes && minutes > 0),
+        ("#{seconds} #{pluralize(seconds, "second")}" if seconds && seconds > 0)
       ].compact.join(" and ")
     end
 
-    def pluralize(count, singular, plural)
+    def pluralize(count, singular, plural = "#{singular}s")
       count > 1 ? plural : singular
     end
   end

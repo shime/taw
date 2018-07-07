@@ -18,7 +18,15 @@ class TawTest < Minitest::Test
   end
 
   def test_it_returns_mixed_stuff
-    assert_equal "2 hours and 1 minute and 4 seconds", Taw.time_ago_in_words(Time.now - 60 * 60 * 2 - 64)
+    assert_equal "1 day and 2 hours and 1 minute and 4 seconds", Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 64)
+  end
+
+  def test_approximation_is_reasonably_short
+    assert_equal "1 day and 2 hours", Taw.approx_time_ago_in_words(Time.now - 60 * 60 * 26 - 64)
+  end
+
+  def test_approximation_rounds_down
+    assert_equal "2 hours and 59 minutes", Taw.approx_time_ago_in_words(Time.now - 60 * 60 * 3 + 1)
   end
 
   def test_it_returns_days

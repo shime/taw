@@ -12,11 +12,19 @@ module Taw
     Calculator.new.time_ago_in_words(time)
   end
 
+  def self.approx_time_ago_in_words(time)
+    Calculator.new.approx_time_ago_in_words(time)
+  end
+
   class Calculator
     def time_ago_in_words(time)
       self.distance = Time.now - time
       calculate_distance
       output_distance
+    end
+
+    def approx_time_ago_in_words(time)
+      time_ago_in_words(time).split(" and ")[0..1].join(" and ")
     end
 
     private

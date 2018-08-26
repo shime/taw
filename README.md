@@ -19,8 +19,11 @@ Taw.time_ago_in_words(Time.now - 63) + " ago"
 Taw.time_ago_in_words(Time.now - 60 * 60 * 2 - 63) + " ago"
 # => "2 hours and 1 minute and 3 seconds ago"
 
-Taw.approx_time_ago_in_words(Time.now - 60 * 60 * 26 - 63) + " ago"
-# => "1 day and 2 hours"
+Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 63, approx: 1) + " ago"
+# => "1 day ago"
+
+Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 63, approx: 2) + " ago"
+# => "1 day and 2 hours ago"
 ```
 
 ## Installation

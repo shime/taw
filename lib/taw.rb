@@ -8,23 +8,19 @@ module Taw
   MONTH_IN_SECONDS = DAY_IN_SECONDS * 30
   YEAR_IN_SECONDS = MONTH_IN_SECONDS * 12
 
-  def self.time_ago_in_words(time)
-    Calculator.new.time_ago_in_words(time)
-  end
-
-  def self.approx_time_ago_in_words(time)
-    Calculator.new.approx_time_ago_in_words(time)
+  def self.time_ago_in_words(time, opts = {})
+    Calculator.new(opts).time_ago_in_words(time)
   end
 
   class Calculator
+    def initialize(opts)
+      @approx_units = opts[:approx]
+    end
+
     def time_ago_in_words(time)
       self.distance = Time.now - time
       calculate_distance
       output_distance
-    end
-
-    def approx_time_ago_in_words(time)
-      time_ago_in_words(time).split(" and ")[0..1].join(" and ")
     end
 
     private
@@ -37,6 +33,11 @@ module Taw
       :weeks,
       :months,
       :years
+
+    def approx_units
+      return @approx_units - 1 if @approx_units
+      -1
+    end
 
     def calculate_distance
       while distance > 0
@@ -95,7 +96,7 @@ module Taw
         ("#{hours} #{pluralize(hours, "hour")}" if hours && hours > 0),
         ("#{minutes} #{pluralize(minutes, "minute")}" if minutes && minutes > 0),
         ("#{seconds} #{pluralize(seconds, "second")}" if seconds && seconds > 0)
-      ].compact.join(" and ")
+      ].drop_while(&:nil?)[0..approx_units].compact.join(" and ")
     end
 
     def pluralize(count, singular, plural = "#{singular}s")

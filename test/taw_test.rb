@@ -21,12 +21,21 @@ class TawTest < Minitest::Test
     assert_equal "1 day and 2 hours and 1 minute and 4 seconds", Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 64)
   end
 
-  def test_approximation_is_reasonably_short
-    assert_equal "1 day and 2 hours", Taw.approx_time_ago_in_words(Time.now - 60 * 60 * 26 - 64)
+  def test_approximation_to_one_unit
+    assert_equal "1 day", Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 64, approx: 1)
+  end
+
+  def test_approximation_to_two_units
+    assert_equal "1 day and 2 hours", Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 64, approx: 2)
   end
 
   def test_approximation_rounds_down
-    assert_equal "2 hours and 59 minutes", Taw.approx_time_ago_in_words(Time.now - 60 * 60 * 3 + 1)
+    assert_equal "2 hours and 59 minutes", Taw.time_ago_in_words(Time.now - 60 * 60 * 3 + 1, approx: 2)
+  end
+
+  def test_approximation_does_not_skip_units
+    # Don't say 1 month and 1 minute because the minute is insignificant
+    assert_equal "1 month", Taw.time_ago_in_words(Time.now - 60 * 60 * 24 * 30 - 60, approx: 2)
   end
 
   def test_it_returns_days

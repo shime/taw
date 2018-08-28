@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    taw (1.0.0pre)
+    taw (1.1.0)
 
 GEM
   remote: https://rubygems.org/

@@ -88,7 +88,7 @@ module Taw
     end
 
     def output_distance
-      [
+      output = [
         ("#{years} #{pluralize(years, "year")}" if years && years > 0),
         ("#{months} #{pluralize(months, "month")}" if months && months > 0),
         ("#{weeks} #{pluralize(weeks, "week")}" if weeks && weeks > 0),
@@ -97,6 +97,8 @@ module Taw
         ("#{minutes} #{pluralize(minutes, "minute")}" if minutes && minutes > 0),
         ("#{seconds} #{pluralize(seconds, "second")}" if seconds && seconds > 0)
       ].drop_while(&:nil?)[0..approx_units].compact.join(" and ")
+      return "a moment" if output.empty?
+      output
     end
 
     def pluralize(count, singular, plural = "#{singular}s")

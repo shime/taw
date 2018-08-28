@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    taw (1.1.0)
+    taw (1.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -25,4 +25,4 @@ DEPENDENCIES
   taw!
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

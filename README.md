@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/shime/taw.svg?branch=master)](https://travis-ci.org/shime/taw)
 
 **T**ime **A**go in **W**ords helper for non Rails projects.
-No dependencies. No assumptions about your codebase. Minimalistic, ~80 SLOC.
+No dependencies. No assumptions about your codebase. Minimalistic, ~90 SLOC.
 
 ## Usage
 
@@ -18,6 +18,9 @@ Taw.time_ago_in_words(Time.now - 63) + " ago"
 
 Taw.time_ago_in_words(Time.now - 60 * 60 * 2 - 63) + " ago"
 # => "2 hours and 1 minute and 3 seconds ago"
+
+Taw.time_ago_in_words(Time.now - 0.5) + " ago"
+# => "a moment ago"
 
 Taw.time_ago_in_words(Time.now - 60 * 60 * 26 - 63, approx: 1) + " ago"
 # => "1 day ago"
